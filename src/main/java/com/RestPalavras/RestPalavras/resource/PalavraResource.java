@@ -1,4 +1,4 @@
-package resource;
+package com.RestPalavras.RestPalavras.resource;
 
 import java.util.List;
 
@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import models.Palavra;
-import repository.Palavras;
+import com.RestPalavras.RestPalavras.models.Palavra;
+import com.RestPalavras.RestPalavras.repository.Palavras;
 
 @RestController
 @RequestMapping("/palavras")
@@ -27,6 +27,7 @@ public class PalavraResource {
 	
 	@GetMapping
 	public List<Palavra> listar(){
+
 		return palavras.findAll();
 	}
 }
