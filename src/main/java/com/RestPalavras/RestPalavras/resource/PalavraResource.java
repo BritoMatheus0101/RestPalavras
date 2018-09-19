@@ -22,6 +22,26 @@ public class PalavraResource {
 	
 	@PostMapping 
 	public Palavra adicionar(@Valid @RequestBody Palavra palavra) {
+		//INICIO DA CONTAGEM DA OPERAÇÃO//
+		long tempoInicial = System.currentTimeMillis();
+			String palavraCompleta = palavra.getString();
+			palavraCompleta.toLowerCase();
+			char[] c = new char[palavraCompleta.length()];
+			//RECEBENDO LETRA//
+			for(int i = 0; i < palavraCompleta.length(); i++){
+				c[i] = palavraCompleta.charAt(i);
+			}
+		int letrasIguais = 0;
+			for(int i = 0; i < palavraCompleta.length()-1; i++){
+				if(c[i] == c[i+1]){
+					letrasIguais++;
+				}
+			}
+
+		//FINAL DA CONTAGEM//
+		palavra.setVogal(Integer.toString(letrasIguais));
+		long tempoFinal = System.currentTimeMillis() - tempoInicial;
+		palavra.setTempoTotal(tempoFinal +"ms");
 		return palavras.save(palavra);
 	}
 	
